@@ -69,8 +69,9 @@ $ helm upgrade --install helloworldrails ./helm/chart --values ./helm/values/rai
 ---
 
 
+# TODO How would you manage your terraform State File for multiple environments? e.g stage, prod
 
-
+ # TODO How would you approach managing terraform variables and secrets as well? 
 
 <!-- 
 
