@@ -69,9 +69,30 @@ $ helm upgrade --install helloworldrails ./helm/chart --values ./helm/values/rai
 ---
 
 
-# TODO How would you manage your terraform State File for multiple environments? e.g stage, prod
 
- # TODO How would you approach managing terraform variables and secrets as well? 
+## How would you manage your terraform State File for multiple environments?
+
+### General State File Management thoughts and considerations
+Great care must be taken when handling terraform state files.  They can and usually do contain sensitive information such as passwords, private keys, certificates etc. 
+
+They should be stored in a secure, access contolled manner.  Remote and cloud backends provide one of the easiest and most secure methods of accomplishing this.  
+
+Terraform has many available options for storing and managing state, selection depends on many implementation details that are out of scope for this document.  However two good options are Terraform Cloud, and Amazon S3.
+
+#### Terraform Cloud
+# todo
+#### Amazon S3
+Using an S3 bucket for managing terraform state files would be a good choice if AWS is already integrated with existing infrastructre.  It supports locking and encryption.  It can also support versioning of the state file making it easier to recover from unforseen problems. It can also flexibly support access control to restrict access to the individual files.
+
+### Managing State files for Different Environments.
+If using S3 as the backend two obvious solutions present themselves 
+
+
+## How would you approach managing terraform variables and secrets as well? 
+teraform cloud
+hashicorp vault
+
+
 
 <!-- 
 
