@@ -51,7 +51,7 @@ The rails web application is in the _rails_application_ folder along with its do
 The following assumes that kubernetes is available on the current context
 ### Helm chart
 A basic helm chart that deploys the built and tagged docker image based on the values file provided.
-Two values files are provided to specify which version of the web appliation to install, other application specific parameters could be provided here.
+Two values files are provided to specify which version of the web application to install, other application specific parameters could be provided here.
 
 node.js install:
 ``` 
@@ -74,7 +74,7 @@ $ helm upgrade --install helloworldrails ./helm/chart --values ./helm/values/rai
 ## How would you manage your terraform State File for multiple environments?
 
 ### General State File Management thoughts and considerations
-Great care must be taken when handling terraform state files.  They can and usually do contain sensitive information such as passwords, private keys, certificates etc. Because of this they should be stored in a secure, access contolled manner.
+Great care must be taken when handling terraform state files.  They can and usually do contain sensitive information such as passwords, private keys, certificates etc. Because of this they should be stored in a secure, access controlled manner.
 
 Remote and cloud backends provide one of the easiest and most secure methods of accomplishing this.  
 
@@ -85,13 +85,13 @@ Terraform Cloud has native support for environments.  Creating a workspace for t
 
 
 #### Amazon S3
-Using an S3 bucket for managing terraform state files would be a good choice if AWS is already integrated with existing infrastructre.  It supports locking and encryption.  It can also support versioning of the state file making it easier to recover from unforseen problems. It can also flexibly support access control to restrict access to the individual files.
+Using an S3 bucket for managing terraform state files would be a good choice if AWS is already integrated with existing infrastructure.  It supports locking and encryption.  It can also support versioning of the state file making it easier to recover from unforeseen problems. It can also flexibly support access control to restrict access to the individual files.
 
 ### Managing State files for Different Environments.
 
-If using S3 as the backend two naturl solutions present themselves.
+If using S3 as the backend two natural solutions present themselves.
 #### Separate workspaces per environment.
-This is one of the simpler methods in that you only have to configure terraform once and only have to manage one S3 bucket for the storat of the state files.  One of the downsides of this method is that there is a risk of something getting misconfigured and a terraform run in dev accidentally making changes in prod. 
+This is one of the simpler methods in that you only have to configure terraform once and only have to manage one S3 bucket for the storage of the state files.  One of the downsides of this method is that there is a risk of something getting misconfigured and a terraform run in dev accidentally making changes in prod. 
 
 #### Separate S3 bucket and terraform credentials for each environment.
 While the initial investment for getting things set up may take longer since each environment has to be provisioned with its own credentials and S3 bucket the possibility of crossing the environment boundary is very low since the the credentials have no access to resources in other environments.
@@ -99,7 +99,7 @@ While the initial investment for getting things set up may take longer since eac
 ## How would you approach managing terraform variables and secrets as well?
 
 
-teraform cloud
+terraform cloud
 hashicorp vault
 
 
