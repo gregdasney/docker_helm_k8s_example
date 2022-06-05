@@ -1,3 +1,22 @@
+<!-- 
+
+1. Create an application that always responds with “hello world” to web requests
+2. Create Dockerfile for this application
+3. Write yaml to host in kubernetes
+a. Can use minikube or docker desktop
+b. Service
+c. Deployment with 2 instances of hello world application
+4. Readme.md file with instructions how to build and deploy to local kubernetes
+5. How would you manage your terraform State File for multiple environments? e.g stage,
+prod , demo (please answer in the Readme)
+6. How would you approach managing terraform variables and secrets as well? (please
+answer in the Readme)
+BONUS:
+1. Write the “hello world” application in rails
+2. Create a helm chart instead of a plain kubernetes yaml manifest file (we use helm here
+
+ -->
+
 # Hello World deployed to kubernetes (minikube) with helm
 
 ### Contents
@@ -9,7 +28,6 @@
 │   .gitignore
 │   helmvalues_node.yaml
 │   ReadMe.md
-│
 ├───helmchart
 │   │   .helmignore
 │   │   Chart.yaml
@@ -37,6 +55,7 @@
 └───ruby_application
         Dockerfile
 ```
+
 </details>
 
 ---
@@ -88,8 +107,8 @@ Terraform Cloud has native support for environments.  Creating a workspace for t
 Using an S3 bucket for managing terraform state files would be a good choice if AWS is already integrated with existing infrastructure.  It supports locking and encryption.  It can also support versioning of the state file making it easier to recover from unforeseen problems. It can also flexibly support access control to restrict access to the individual files.
 
 ### Managing State files for Different Environments.
-
 If using S3 as the backend two natural solutions present themselves.
+
 #### Separate workspaces per environment.
 This is one of the simpler methods in that you only have to configure terraform once and only have to manage one S3 bucket for the storage of the state files.  One of the downsides of this method is that there is a risk of something getting misconfigured and a terraform run in dev accidentally making changes in prod. 
 
@@ -98,26 +117,15 @@ While the initial investment for getting things set up may take longer since eac
 
 ## How would you approach managing terraform variables and secrets as well?
 
+Terraform variables and secrets can be managed in many ways.
+Most if not all modern and popular pipeline or CI/CD software has some sort of support for securely storing secrets and variables. 
+* Azure pipelines calls them [Variable Groups](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml). 
+* Github Calls them [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
+* Jenkins has a plugin called [Credentials Plugin](https://github.com/jenkinsci/credentials-plugin).
+* Terraform Cloud has [Variable Sets](https://learn.hashicorp.com/tutorials/terraform/cloud-multiple-variable-sets)
 
-terraform cloud
-hashicorp vault
+All of these support the secure storage of credentials along with the ability to access them securely from the executing pipeline.
+I would make a selection based on looking at what services/infrastructure are currently in use and make a recommendation based on what is already available.
 
 
 
-<!-- 
-
-1. Create an application that always responds with “hello world” to web requests
-2. Create Dockerfile for this application
-3. Write yaml to host in kubernetes
-a. Can use minikube or docker desktop
-b. Service
-c. Deployment with 2 instances of hello world application
-4. Readme.md file with instructions how to build and deploy to local kubernetes
-5. How would you manage your terraform State File for multiple environments? e.g stage,
-prod , demo (please answer in the Readme)
-6. How would you approach managing terraform variables and secrets as well? (please
-answer in the Readme)
-BONUS:
-1. Write the “hello world” application in rails
-2. Create a helm chart instead of a plain kubernetes yaml manifest file (we use helm here)
--->
