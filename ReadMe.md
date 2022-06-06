@@ -82,7 +82,7 @@ Most if not all modern/popular pipeline or CI/CD software has some sort of suppo
 * Jenkins has a plugin called [Credentials Plugin](https://github.com/jenkinsci/credentials-plugin).
 * Terraform Cloud has [Variable Sets](https://learn.hashicorp.com/tutorials/terraform/cloud-multiple-variable-sets)
 
-All of these support the secure storage of credentials along with the ability to access them securely from the executing pipeline.
+All of these support the secure storage of secrets/credentials along with the ability to access them securely from the executing pipeline.
 I would make a selection based on what services/infrastructure are currently in use and make a recommendation based on what is already available.
 
 
