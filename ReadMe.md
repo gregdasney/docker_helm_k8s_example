@@ -17,7 +17,6 @@ BONUS:
 
 # Hello World deployed to kubernetes (minikube) with helm
 
----
 ## Web Applications and building
 
 ### Node.Js Web Application
@@ -40,9 +39,9 @@ rails install:
 $ helm upgrade --install helloworldrails ./helm/chart --values ./helm/values/rails.yaml
 ``` 
 ### Assumptions
-1. The image is named _helloworld_
-2. The node image is tagged _nodejs_
-3. The rails image is tagged _rails_
+1. The image is named `helloworld`
+2. The node image is tagged `nodejs`
+3. The rails image is tagged `rails`
 4. minikube is installed, running and configured for kubectl
 5. Prior to building `eval $(minikube docker-env)` was run to allow minikube to access locally built docker images
 
@@ -60,32 +59,30 @@ Remote and cloud backends provide one of the easiest and most secure methods of 
 Terraform has many available options for remote backends and managing state, selection depends on many implementation details that are out of scope for this document.  However two good options are Terraform Cloud, and Amazon S3.
 
 #### Terraform Cloud
-Terraform Cloud has native support for environments.  Creating a workspace for the terraform run in each environment is a conceptually simple but effective method for keeping them separate.
-
+By default Terraform cloud will manage the state file for you and keep it in an encrypted store, it also has native support for environments.  Creating a workspace for the terraform run in each environment is a conceptually simple but effective method for keeping the state files separate.
 
 #### Amazon S3
 Using an S3 bucket for managing terraform state files would be a good choice if AWS is already integrated with existing infrastructure.  It supports locking and encryption.  It can also support versioning of the state file making it easier to recover from unforeseen problems. It can also flexibly support access control to restrict access to the individual files.
 
-### Managing State files for Different Environments.
+##### Managing State files for Different Environments.
 If using S3 as the backend two natural solutions present themselves.
 
-#### Separate workspaces per environment.
+##### Separate workspaces per environment.
 This is one of the simpler methods in that you only have to configure terraform once and only have to manage one S3 bucket for the storage of the state files.  One of the downsides of this method is that there is a risk of something getting misconfigured and a terraform run in dev accidentally making changes in prod. 
 
-#### Separate S3 bucket and terraform credentials for each environment.
+##### Separate S3 bucket and terraform credentials for each environment.
 While the initial investment for getting things set up may take longer since each environment has to be provisioned with its own credentials and S3 bucket the possibility of crossing the environment boundary is very low since the the credentials have no access to resources in other environments.
 
 ## How would you approach managing terraform variables and secrets as well?
 
 Terraform variables and secrets can be managed in many ways.
-Most if not all modern and popular pipeline or CI/CD software has some sort of support for securely storing secrets and variables. 
+Most if not all modern/popular pipeline or CI/CD software has some sort of support for securely storing and accessing secrets and variables. 
 * Azure pipelines calls them [Variable Groups](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml). 
 * Github Calls them [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 * Jenkins has a plugin called [Credentials Plugin](https://github.com/jenkinsci/credentials-plugin).
 * Terraform Cloud has [Variable Sets](https://learn.hashicorp.com/tutorials/terraform/cloud-multiple-variable-sets)
 
 All of these support the secure storage of credentials along with the ability to access them securely from the executing pipeline.
-I would make a selection based on looking at what services/infrastructure are currently in use and make a recommendation based on what is already available.
-
+I would make a selection based on what services/infrastructure are currently in use and make a recommendation based on what is already available.
 
 
