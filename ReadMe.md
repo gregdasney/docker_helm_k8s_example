@@ -17,45 +17,6 @@ BONUS:
 
 # Hello World deployed to kubernetes (minikube) with helm
 
-### Contents
-<details>
-<summary> 
-(Click to expand)
-</summary>
-```
-│   .gitignore
-│   helmvalues_node.yaml
-│   ReadMe.md
-├───helmchart
-│   │   .helmignore
-│   │   Chart.yaml
-│   │   values.yaml
-│   │
-│   ├───charts
-│   └───templates
-│       │   deployment.yaml
-│       │   ingress.yaml
-│       │   service.yaml
-│       │   _helpers.tpl
-│       │
-│       └───tests
-│               test-connection.yaml
-│
-├───nodejs_application
-│   │   .dockerignore
-│   │   Dockerfile
-│   │
-│   └───app
-│           main.js
-│           package-lock.json
-│           package.json
-│
-└───ruby_application
-        Dockerfile
-```
-
-</details>
-
 ---
 ## Web Applications and building
 
@@ -82,8 +43,9 @@ $ helm upgrade --install helloworldrails ./helm/chart --values ./helm/values/rai
 1. The image is named _helloworld_
 2. The node image is tagged _nodejs_
 3. The rails image is tagged _rails_
-4. Prior to building `eval $(minikube docker-env)` was run to allow docker to access locally built images
-5. minikube is installed and configured for kubectl
+4. minikube is installed, running and configured for kubectl
+5. Prior to building `eval $(minikube docker-env)` was run to allow minikube to access locally built docker images
+
 ---
 
 
