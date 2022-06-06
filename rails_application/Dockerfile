@@ -1,11 +1,8 @@
 FROM ruby:3.0
-EXPOSE 3000
 RUN gem install rails
-
-workdir /
+WORKDIR /
 COPY /app /app
-workdir /app/helloworld
+WORKDIR /app
 RUN bundle
-CMD ["rails", "server"]
-# ENTRYPOINT [ "/bin/bash","-c" ]
-# CMD rails
+EXPOSE 3000
+CMD ["rails", "server","-b","0.0.0.0"]
