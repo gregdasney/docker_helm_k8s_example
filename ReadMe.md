@@ -1,5 +1,4 @@
-<!-- 
-
+<!-- ```
 1. Create an application that always responds with “hello world” to web requests
 2. Create Dockerfile for this application
 3. Write yaml to host in kubernetes
@@ -14,8 +13,7 @@ answer in the Readme)
 BONUS:
 1. Write the “hello world” application in rails
 2. Create a helm chart instead of a plain kubernetes yaml manifest file (we use helm here
-
- -->
+``` -->
 
 # Hello World deployed to kubernetes (minikube) with helm
 
