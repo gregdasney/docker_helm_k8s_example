@@ -20,9 +20,9 @@ BONUS:
 ## Web Applications and building
 
 ### Node.Js Web Application
-The Node.js web application is in the _nodejs_application_ folder along with its dockerfile.  To build the docker image run `docker build . -t hellworld:nodejs` from inside the folder.
+The Node.js web application is in the _nodejs_application_ folder along with its dockerfile.  To build the docker image run `docker build . -t helloworld:nodejs` from inside the folder.
 ### Rails Web Application
-The rails web application is in the _rails_application_ folder along with its dockerfile.  To build the docker image run `docker build . -t hellworld:rails` from inside the folder.
+The rails web application is in the _rails_application_ folder along with its dockerfile.  To build the docker image run `docker build . -t helloworld:rails` from inside the folder.
 
 ## Deploying
 The following assumes that kubernetes is available on the current context
